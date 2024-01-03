@@ -1,5 +1,5 @@
 import { Player } from "@remotion/player";
-import type { NextPage } from "next";
+
 import Head from "next/head";
 import React, { useMemo, useState } from "react";
 import { Main } from "../remotion/MyComp/Main";
@@ -14,32 +14,16 @@ import {
 import { z } from "zod";
 import { RenderControls } from "../components/RenderControls";
 
-const container: React.CSSProperties = {
-  maxWidth: 768,
-  margin: "auto",
-  marginBottom: 20,
-};
+import {
+  useStoryblokState,
+  getStoryblokApi,
+  StoryblokComponent,
+} from "@storyblok/react";
 
-const outer: React.CSSProperties = {
-  borderRadius: "var(--geist-border-radius)",
-  overflow: "hidden",
-  boxShadow: "0 0 200px rgba(0, 0, 0, 0.15)",
-  marginBottom: 40,
-  marginTop: 60,
-};
 
-const player: React.CSSProperties = {
-  width: "100%",
-};
 
-const Home: NextPage = () => {
-  const [text, setText] = useState<string>(defaultMyCompProps.title);
+export default function Home({ story }){
 
-  const inputProps: z.infer<typeof CompositionProps> = useMemo(() => {
-    return {
-      title: text,
-    };
-  }, [text]);
 
   return (
     <div>
@@ -48,29 +32,49 @@ const Home: NextPage = () => {
         <meta name="description" content="Remotion and Next.js" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div style={container}>
-        <div className="cinematics" style={outer}>
+      <div >
+        <div className="cinematics">
+        <StoryblokComponent blok={story.content} />
           <Player
             component={Main}
-            inputProps={inputProps}
+            //inputProps={inputProps}
             durationInFrames={DURATION_IN_FRAMES}
             fps={VIDEO_FPS}
             compositionHeight={VIDEO_HEIGHT}
             compositionWidth={VIDEO_WIDTH}
-            style={player}
+           
             controls
             autoPlay
             loop
           />
         </div>
         <RenderControls
-          text={text}
-          setText={setText}
-          inputProps={inputProps}
+          //text={text}
+         //setText={setText}
+          //inputProps={inputProps}
         ></RenderControls>
       </div>
     </div>
   );
 };
 
-export default Home;
+
+
+export async function getStaticProps() {
+  let slug = "home";
+
+  let sbParams = {
+    version: "draft", // or 'published'
+  };
+
+  const storyblokApi = getStoryblokApi();
+  let { data } = await storyblokApi.get(`cdn/stories/${slug}`, sbParams);
+
+  return {
+    props: {
+      story: data ? data.story : false,
+      key: data ? data.story.id : false,
+    },
+    revalidate: 3600,
+  };
+}
