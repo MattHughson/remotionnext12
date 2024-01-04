@@ -15,16 +15,17 @@ import { TextFade } from "./TextFade";
 
 loadFont();
 
-const container: React.CSSProperties = {
-  backgroundColor: "white",
-};
 
 const logo: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
 };
 
-export const Main = ({ title }: z.infer<typeof CompositionProps>) => {
+export const Main = ({ title, image, ringsColour }: z.infer<typeof CompositionProps>) => {
+
+  const container: React.CSSProperties = {
+    backgroundColor: ringsColour,
+  };
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -53,7 +54,15 @@ export const Main = ({ title }: z.infer<typeof CompositionProps>) => {
         </TextFade>
       </Sequence>
       <AbsoluteFill style={logo}>
-        <NextLogo outProgress={logoOut}></NextLogo>
+      <img
+            src={image}
+            alt="Your Image Alt Text"
+            style={{
+              height: 140,
+              borderRadius: 70,
+              transform: `scale(${1 - logoOut})`,
+            }}
+          />
       </AbsoluteFill>
       <MultiRadialGradient outProgress={logoOut}></MultiRadialGradient>
     </AbsoluteFill>

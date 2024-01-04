@@ -7,6 +7,7 @@ import Page from "./Page";
 import Teaser from "./Teaser";
 import Grid from "./Grid";
 import Feature from "./Feature";
+import Video from "./Video";
 
 /** 3. Initialize it as usual */
 storyblokInit({
@@ -16,7 +17,9 @@ storyblokInit({
     teaser: Teaser,
     page: Page,
     grid: Grid,
-    feature: Feature
+    feature: Feature,
+    video: Video,
+    
   },
 });
 
