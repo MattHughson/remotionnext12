@@ -17,9 +17,12 @@ const Video = ({blok}) => {
     const {Bynder, Image, Color, Text} = blok
 
     const container = {
-        margin: "auto",
-        marginBottom: 20,
-      };
+      margin: "auto",
+      marginBottom: 20,
+      height: "100vh", /* 100% of the viewport height */
+      width: "100%",   /* 100% of the viewport width */
+  };
+      
       
       const outer = {
         borderRadius: "var(--geist-border-radius)",
