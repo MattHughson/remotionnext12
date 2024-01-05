@@ -19,7 +19,7 @@ const Video = ({blok}) => {
     const container = {
       margin: "auto",
       marginBottom: 20,
-      height: "100vh", /* 100% of the viewport height */
+      height: "100%", /* 100% of the viewport height */
       width: "100%",   /* 100% of the viewport width */
   };
       
@@ -34,6 +34,7 @@ const Video = ({blok}) => {
       
       const player = {
         width: "100%",
+        height: "100%",
       };
 
   return (
