@@ -33,8 +33,8 @@ const Video = ({blok}) => {
       };
       
       const player = {
-        width: "100%",
         height: "100%",
+        
       };
 
   return (
