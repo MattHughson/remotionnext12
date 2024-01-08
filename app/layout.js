@@ -3,10 +3,7 @@ import StoryblokProvider from "../components/StoryblokProvider"
 
 import './globals.css';
 
-export const metadata = {
-  title: 'Storyblok and Next.js 13',
-  description: 'A Next.js and Storyblok app using app router ',
-}
+
 
 storyblokInit({
   accessToken: 'IR1Lj26hQLt6Dy9NJWKq7gtt',
