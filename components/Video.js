@@ -11,6 +11,7 @@ import {
 import { z } from "zod";
 import { RenderControls } from "../components/RenderControls";
 import { Player } from "@remotion/player";
+import { Helmet } from 'react-helmet';
 
 const Video = ({blok}) => {
     console.log('video', blok)
@@ -39,6 +40,13 @@ const Video = ({blok}) => {
 
   return (
     <div style={container}>
+       <Helmet>
+        {/* Set the Open Graph image dynamically */}
+        <meta property="og:image" content={Image.filename || Bynder} />
+        <meta property="og:image:width" content="200px" />
+        <meta property="og:image:height" content="200px" />
+        <meta property="og:title" content={Text} />
+      </Helmet>
 
         <Player
                 component={Main}
