@@ -7,13 +7,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 const Video = ({ blok }) => {
   const { Bynder, Image, Color, Text } = blok;
 
-  useEffect(() => {
-    console.log('Text prop changed:', Text);
-    // Update the document head using react-helmet-async
-    document.title = Text || 'Default Title';
-    // Add other logic for updating meta tags if needed
 
-  }, [Text]);
 
   const container = {
     margin: "auto",
@@ -36,11 +30,7 @@ const Video = ({ blok }) => {
   return (
     <HelmetProvider>
       <div style={container}>
-        <Helmet>
-          <title>{Text || 'Default Title'}</title>
-          <meta property="og:image" content={Image.filename || Bynder} />
-          {/* Add other meta tags as needed */}
-        </Helmet>
+       
         <Player
           component={Main}
           inputProps={{
