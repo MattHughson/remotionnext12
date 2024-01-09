@@ -13,7 +13,7 @@ storyblokInit({
 
 export default async function RootLayout({ children }) {
   const {ContentNode}  = await fetchData();
-  console.log('data data',ContentNode.content.body[0].Text)
+  console.log('data data',ContentNode.content.body[0].Bynder[0].files.webImage.url)
   return (
     <StoryblokProvider>
       <MetadataProvider>
@@ -22,8 +22,8 @@ export default async function RootLayout({ children }) {
             {/* Set metadata dynamically */}
             <title>{ContentNode.content.body[0].Text}</title>
             <meta name="description" content="Presented by Storyblok" />
-            <meta property="og:image" content={ContentNode.content.body[0].Image.filename} />
-            <meta property="og:image:secure_url" content={ContentNode.content.body[0].Image.filename} /> 
+            <meta property="og:image" content={ContentNode.content.body[0].Image.filename ? ContentNode.content.body[0].Image.filename : ContentNode.content.body[0].Bynder[0].files.webImage.url} />
+            <meta property="og:image:secure_url" content={ContentNode.content.body[0].Image.filename ? ContentNode.content.body[0].Image.filename :ContentNode.content.body[0].Bynder[0].files.webImage.url} /> 
       
           </head>
           <body>{children}</body>

@@ -8,7 +8,7 @@ const Video = ({ blok }) => {
   const { Bynder, Image, Color, Text } = blok;
 
 
-
+console.log("BynderBynder",Bynder[0].files.webImage.url)
   const container = {
     margin: "auto",
     marginBottom: 20,
@@ -35,7 +35,7 @@ const Video = ({ blok }) => {
           component={Main}
           inputProps={{
             title: Text || 'Default Title',
-            image: Image.filename || Bynder,
+            image: Image.filename || Bynder[0].files.webImage.url,
             ringsColour: Color.color
           }}
           durationInFrames={DURATION_IN_FRAMES}
